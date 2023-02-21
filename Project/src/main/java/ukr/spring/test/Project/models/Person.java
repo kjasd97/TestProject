@@ -1,10 +1,11 @@
 package ukr.spring.test.Project.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 
 @Entity
-@Table(schema = "json" ,name = "Person")
+@Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +15,17 @@ public class Person {
     private String email;
     private String phone;
     private String website;
-    @OneToOne(mappedBy = "person")
-    private Company company;
-    @OneToOne(mappedBy = "person1")
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Company company;
 
     public Person(){
 
     }
+
 
     public int getId() {
         return id;
@@ -71,14 +75,6 @@ public class Person {
         this.website = website;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -87,5 +83,24 @@ public class Person {
         this.address = address;
     }
 
+    public Company getCompany() {
+        return company;
+    }
 
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", website='" + website + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }
