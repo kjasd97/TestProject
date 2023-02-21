@@ -1,5 +1,7 @@
 package ukr.spring.test.Project.service;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.util.List;
 public class PeopleService {
 
     private final PersonRepository personRepository;
+
 
     @Autowired
     public PeopleService(PersonRepository personRepository) {
@@ -29,6 +32,7 @@ public class PeopleService {
 
     @Transactional
     public void save (Person person){
-        personRepository.save(person);
+       personRepository.save(person);
+
     }
 }

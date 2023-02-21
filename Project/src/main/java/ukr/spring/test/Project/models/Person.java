@@ -1,6 +1,7 @@
 package ukr.spring.test.Project.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 
 @Entity
@@ -14,9 +15,11 @@ public class Person {
     private String email;
     private String phone;
     private String website;
-    @OneToOne(mappedBy = "person")
+
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private Company company;
-    @OneToOne(mappedBy = "person1")
+
+    @OneToOne(mappedBy = "person1", cascade = CascadeType.ALL)
     private Address address;
 
     public Person(){
@@ -87,5 +90,17 @@ public class Person {
         this.address = address;
     }
 
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", website='" + website + '\'' +
+                ", company=" + company +
+                ", address=" + address +
+                '}';
+    }
 }

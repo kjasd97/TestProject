@@ -1,6 +1,7 @@
 package ukr.spring.test.Project.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(schema = "json" ,name = "Address")
@@ -12,10 +13,11 @@ public class Address {
     private String suite;
     private String city;
     private String zipcode;
-    @OneToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
     private Person person1;
-    @OneToOne(mappedBy = "address")
+
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
     private Geo geo;
 
     public Address(){
@@ -28,6 +30,22 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Person getPerson1() {
+        return person1;
+    }
+
+    public void setPerson1(Person person1) {
+        this.person1 = person1;
     }
 
     public String getSuite() {
@@ -60,5 +78,18 @@ public class Address {
 
     public void setGeo(Geo geo) {
         this.geo = geo;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", suite='" + suite + '\'' +
+                ", city='" + city + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", person1=" + person1 +
+                ", geo=" + geo +
+                '}';
     }
 }

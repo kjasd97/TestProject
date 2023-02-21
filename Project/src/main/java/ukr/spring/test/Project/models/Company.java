@@ -1,6 +1,7 @@
 package ukr.spring.test.Project.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(schema = "json" ,name = "Company")
@@ -13,7 +14,8 @@ public class Company {
     private String bs;
 
     @OneToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Person person;
 
     public Company(){
@@ -58,5 +60,16 @@ public class Company {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", catchPhrase='" + catchPhrase + '\'' +
+                ", bs='" + bs + '\'' +
+                ", person=" + person +
+                '}';
     }
 }
