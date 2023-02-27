@@ -42,9 +42,8 @@ private final PeopleService peopleService;
 //    }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> create(@RequestBody Person person){
-
-        peopleService.save(person);
+    public ResponseEntity<HttpStatus> savePeople(@RequestBody List <Person> person){
+        peopleService.saveAll(person);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
