@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import ukr.spring.test.Project.dto.PersonDTO;
 import ukr.spring.test.Project.models.Person;
+import ukr.spring.test.Project.models.Post;
 import ukr.spring.test.Project.repositories.PersonRepository;
 import ukr.spring.test.Project.service.PeopleService;
 
@@ -33,18 +35,16 @@ private final PeopleService peopleService;
     }
 
 
-//   @GetMapping()
-//    public void json(){
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "https://jsonplaceholder.typicode.com/users/1";
-//        Person person = restTemplate.getForObject(url, Person.class);
-//        peopleService.save(person);
-//    }
-
-    @PostMapping
-    public ResponseEntity<HttpStatus> savePeople(@RequestBody List <Person> person){
+    @PutMapping
+    public ResponseEntity<HttpStatus> createPeople(@RequestBody List <Person> person){
         peopleService.saveAll(person);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> createPerson(@RequestBody Person person) {
+        peopleService.save(person);
+        return ResponseEntity.ok().build();
     }
 
 

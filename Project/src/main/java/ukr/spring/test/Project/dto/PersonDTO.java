@@ -1,34 +1,21 @@
-package ukr.spring.test.Project.models;
+package ukr.spring.test.Project.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
+import ukr.spring.test.Project.models.Address;
+import ukr.spring.test.Project.models.Company;
 
-import java.util.List;
+public class PersonDTO {
 
-
-@Entity
-@Table(name = "person")
-public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String username;
     private String email;
     private String phone;
     private String website;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Company company;
+    private AddressDTO addressDTO;
+    private CompanyDTO companyDTO;
 
 
-    public Person(){
-
-    }
 
     public int getId() {
         return id;
@@ -78,32 +65,34 @@ public class Person {
         this.website = website;
     }
 
-    public Address getAddress() {
-        return address;
+    public AddressDTO getAddressDTO() {
+        return addressDTO;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressDTO(AddressDTO addressDTO) {
+        this.addressDTO = addressDTO;
     }
 
-    public Company getCompany() {
-        return company;
+    public CompanyDTO getCompanyDTO() {
+        return companyDTO;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyDTO(CompanyDTO companyDTO) {
+        this.companyDTO = companyDTO;
     }
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "PersonDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", website='" + website + '\'' +
-                ", address=" + address +
+                ", addressDTO=" + addressDTO +
+                ", companyDTO=" + companyDTO +
                 '}';
     }
+
 }
