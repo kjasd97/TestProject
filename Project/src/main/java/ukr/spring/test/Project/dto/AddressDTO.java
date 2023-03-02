@@ -68,15 +68,5 @@ public class AddressDTO {
 
 
 
-    @Override
-    public String toString() {
-        return "AddressDTO{" +
-                "id=" + id +
-                ", street='" + street + '\'' +
-                ", suite='" + suite + '\'' +
-                ", city='" + city + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", geoDTO=" + geoDTO +
-                '}';
-    }
+
 }

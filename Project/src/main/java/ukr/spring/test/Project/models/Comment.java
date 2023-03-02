@@ -21,9 +21,9 @@ public class Comment {
     @Column(name = "post_id")
     private Integer postId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id", insertable=false, updatable=false)
-    private Post poster;
+    private Post post;
 
 
 
@@ -67,12 +67,12 @@ public class Comment {
         this.postId = postId;
     }
 
-    public Post getPoster() {
-        return poster;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPoster(Post poster) {
-        this.poster = poster;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     @Override

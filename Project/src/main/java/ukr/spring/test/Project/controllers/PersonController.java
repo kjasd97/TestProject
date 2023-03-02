@@ -36,9 +36,10 @@ private final PeopleService peopleService;
 
 
     @PutMapping
-    public ResponseEntity<HttpStatus> createPeople(@RequestBody List <Person> person){
-        peopleService.saveAll(person);
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<Void> createPeople(@RequestBody List <PersonDTO> personDTOS){
+        List<Person> persons = peopleService.convertToPeople(personDTOS);
+        peopleService.saveAll(persons);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping

@@ -31,12 +31,5 @@ public class CompanyDTO {
         this.bs = bs;
     }
 
-    @Override
-    public String toString() {
-        return "CompanyDTO{" +
-                "name='" + name + '\'' +
-                ", catchPhrase='" + catchPhrase + '\'' +
-                ", bs='" + bs + '\'' +
-                '}';
-    }
+
 }

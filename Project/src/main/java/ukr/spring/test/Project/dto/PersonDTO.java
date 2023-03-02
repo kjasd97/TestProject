@@ -12,8 +12,8 @@ public class PersonDTO {
     private String email;
     private String phone;
     private String website;
-    private AddressDTO addressDTO;
-    private CompanyDTO companyDTO;
+    private Address address;
+    private Company company;
 
 
 
@@ -65,34 +65,19 @@ public class PersonDTO {
         this.website = website;
     }
 
-    public AddressDTO getAddressDTO() {
-        return addressDTO;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressDTO(AddressDTO addressDTO) {
-        this.addressDTO = addressDTO;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public CompanyDTO getCompanyDTO() {
-        return companyDTO;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyDTO(CompanyDTO companyDTO) {
-        this.companyDTO = companyDTO;
+    public void setCompany(Company company) {
+        this.company = company;
     }
-
-    @Override
-    public String toString() {
-        return "PersonDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", website='" + website + '\'' +
-                ", addressDTO=" + addressDTO +
-                ", companyDTO=" + companyDTO +
-                '}';
-    }
-
 }

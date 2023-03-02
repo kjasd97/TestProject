@@ -40,4 +40,11 @@ public class PostController {
       return ResponseEntity.of(postsService.getById(id));
     }
 
+    @GetMapping("/title")
+    public Post findPostByTitle(@RequestParam(required = false) String title){
+        return postsService.findPostByTitle(title);
+    }
+
+
+
 }

@@ -49,4 +49,8 @@ public class PostsService {
         return postDTO.stream().map(postDTO1 -> modelMapper.map(postDTO1, Post.class)).
                 collect(Collectors.toList());
     }
+
+    public Post findPostByTitle(String title){
+        return postRepository.findPostByTitle(title);
+    }
 }

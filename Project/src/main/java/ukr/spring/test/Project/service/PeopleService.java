@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import ukr.spring.test.Project.dto.AddressDTO;
 import ukr.spring.test.Project.dto.CompanyDTO;
 import ukr.spring.test.Project.dto.PersonDTO;
-import ukr.spring.test.Project.models.Address;
-import ukr.spring.test.Project.models.Company;
-import ukr.spring.test.Project.models.Geo;
-import ukr.spring.test.Project.models.Person;
+import ukr.spring.test.Project.dto.PostDTO;
+import ukr.spring.test.Project.models.*;
 import ukr.spring.test.Project.repositories.PersonRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Transactional(readOnly = true)
 @Service
 public class PeopleService {
@@ -43,27 +43,13 @@ public class PeopleService {
 
     }
 
+    public Person convertToPerson (PersonDTO personDTO){
+        return modelMapper.map(personDTO, Person.class);
+    }
 
-//    public Person convertToPerson(PersonDTO personDTO){
-//
-//        CompanyDTO companyDTO = new CompanyDTO();
-//        Company company = modelMapper.map(companyDTO, Company.class);
-//
-//        AddressDTO addressDTO = new AddressDTO();
-//        Address address = modelMapper.map(addressDTO, Address.class);
-//
-//        Person person =  modelMapper.map(personDTO, Person.class);
-//        address.setStreet(addressDTO.getStreet());
-//        address.setSuite(addressDTO.getSuite());
-//        address.setCity(addressDTO.getCity());
-//        address.setZipcode(addressDTO.getZipcode());
-//        person.setAddress(address);
-//
-//        company.setName(companyDTO.getName());
-//        company.setBs(companyDTO.getBs());
-//        company.setCatchPhrase(companyDTO.getCatchPhrase());
-//        person.setCompany(company);
-//
-//        return person;
-//    }
+    public List <Person> convertToPeople(List <PersonDTO> personDTOS){
+        return personDTOS.stream().map(personDTO -> modelMapper.map(personDTO , Person.class)).
+                collect(Collectors.toList());
+    }
+
 }
